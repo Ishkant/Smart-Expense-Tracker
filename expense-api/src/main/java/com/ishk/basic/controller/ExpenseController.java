@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/expenses")
-@CrossOrigin(origins = "*") // Allows calls from frontend
+// @CrossOrigin(origins = "*") // Allows calls from frontend
 public class ExpenseController {
 
     @Autowired
