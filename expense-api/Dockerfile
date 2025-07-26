@@ -1,11 +1,11 @@
-# Step 1: Use Maven to build the Spring Boot app
-FROM maven:3.8.5-openjdk-17 AS build
+# First Stage: Build the app using Maven
+FROM maven:3.9.0-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY expense-api /app
-RUN mvn clean install -DskipTests
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Step 2: Use a lighter image to run the app
-FROM openjdk:17-jdk-slim
+# Second Stage: Run the built JAR
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
